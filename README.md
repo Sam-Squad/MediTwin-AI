@@ -61,3 +61,6 @@ Frontend runs at `http://localhost:5173`.
 ## 🔒 Safety & Disclaimers
 
 All AI interactions prominently feature a standardized safety disclaimer reminding users to consult licensed medical professionals for diagnosis or treatment decisions.
+Contributed by <Mansi>.
+Updated by Third Team Member
+Updated by third team member.
