@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   MediTwin AI — Premium Healthcare Design System 2026
+   ============================================ */
+
+/* CSS Custom Properties */
+:root {
+  --brand-500: #2563EB;
+  --brand-600: #1D4ED8;
+  --medical-500: #10B981;
+  --cyan-500: #06B6D4;
+  --accent-500: #7C3AED;
+  --surface: #F8FAFC;
+  --surface-card: #FFFFFF;
+  --surface-border: #E2E8F0;
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --radius-card: 20px;
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+  --shadow-card-hover: 0 12px 30px rgba(37, 99, 235, 0.08), 0 4px 8px rgba(0, 0, 0, 0.03);
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-slate-900 font-sans antialiased selection:bg-brand-500 selection:text-white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--surface);
+  }
+}
+
+/* ============================================
+   Glass Card System
+   ============================================ */
+@layer components {
+  .med-card {
+    background: var(--surface-card);
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(226, 232, 240, 0.6); /* Very subtle soft border */
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .med-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+
+  /* Glass card with blur */
+  .med-glass {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Gradient accent card */
+  .med-card-gradient {
+    @apply bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-premium;
+    border-radius: var(--radius-card);
+  }
+
+  /* Stat card */
+  .med-stat-card {
+    background: var(--surface-card);
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(226, 232, 240, 0.5);
+    padding: 1.25rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+  }
+  .med-stat-card:hover {
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.06);
+    transform: translateY(-3px);
+  }
+
+  /* ============================================
+     Button System
+     ============================================ */
+  .med-btn {
+    @apply inline-flex items-center justify-center gap-2 font-semibold text-sm rounded-2xl transition-all duration-200 cursor-pointer select-none;
+  }
+  .med-btn-primary {
+    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+    color: white;
+    @apply px-5 py-2.5 shadow-glow-sm hover:shadow-glow active:scale-[0.98];
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .med-btn-secondary {
+    @apply px-5 py-2.5 bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200/80 hover:border-slate-300;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+  }
+  .med-btn-ghost {
+    @apply px-4 py-2 text-slate-500 hover:bg-slate-50 hover:text-slate-800;
+  }
+  .med-btn-danger {
+    @apply px-5 py-2.5 bg-red-500 text-white hover:bg-red-600 shadow-sm;
+  }
+  .med-btn-success {
+    @apply px-5 py-2.5 bg-green-500 text-white hover:bg-green-600 shadow-glow-green;
+  }
+  .med-btn-sm {
+    @apply text-xs px-3.5 py-1.5 rounded-xl;
+  }
+  .med-btn-lg {
+    @apply text-base px-7 py-3 rounded-2xl;
+  }
+  .med-btn-icon {
+    @apply w-10 h-10 p-0 rounded-xl;
+  }
+
+  /* ============================================
+     Input System
+     ============================================ */
+  .med-input {
+    @apply w-full bg-white border border-slate-200 rounded-2xl px-4 py-3 text-sm text-slate-800 
+           placeholder-slate-400 outline-none transition-all duration-200 shadow-sm
+           focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 focus:bg-white;
+  }
+  .med-input-with-icon {
+    @apply pl-11;
+  }
+
+  /* ============================================
+     Badge System
+     ============================================ */
+  .med-badge {
+    @apply inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full;
+  }
+  .med-badge-info {
+    @apply bg-brand-50 text-brand-600 border border-brand-100;
+  }
+  .med-badge-success {
+    @apply bg-green-50 text-green-600 border border-green-100;
+  }
+  .med-badge-warning {
+    @apply bg-amber-50 text-amber-600 border border-amber-100;
+  }
+  .med-badge-danger {
+    @apply bg-rose-50 text-rose-600 border border-rose-100;
+  }
+  .med-badge-neutral {
+    @apply bg-slate-100 text-slate-600 border border-slate-200;
+  }
+
+  /* ============================================
+     Nav System
+     ============================================ */
+  .med-nav-item {
+    @apply flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-all duration-200
+           text-slate-500 hover:bg-slate-50 hover:text-slate-900;
+  }
+  .med-nav-item-active {
+    @apply bg-brand-50 text-brand-600 font-semibold shadow-sm border border-brand-100/50;
+  }
+
+  /* ============================================
+     Shimmer / Loading Skeleton
+     ============================================ */
+  .med-skeleton {
+    @apply bg-gradient-to-r from-slate-100 via-white to-slate-100 bg-[length:200%_100%] animate-shimmer rounded-[20px];
+  }
+}
+
+/* ============================================
+   Custom Scrollbar
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+/* ============================================
+   Page transition helpers
+   ============================================ */
+.page-enter {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Legacy compat (used in Login page) */
+.glass-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 1);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 71, 225, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
