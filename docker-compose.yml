@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: meditwin-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: meditwin_db
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: meditwin-backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017
+      - DATABASE_NAME=meditwin_db
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - JWT_SECRET=meditwin_jwt_super_secret_key_2026
+    depends_on:
+      - mongodb
+
+  frontend:
+    build: ./frontend
+    container_name: meditwin-frontend
+    restart: always
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
