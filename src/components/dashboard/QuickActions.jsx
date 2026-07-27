@@ -24,8 +24,8 @@ export const QuickActions = () => {
                 <Icon className="w-5 h-5" />
               </div>
               <div>
-                <div className="font-bold text-sm text-slate-800 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors leading-tight mb-1">{act.title}</div>
-                <div className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">{act.desc}</div>
+                <div className="font-bold text-sm text-slate-900 group-hover:text-brand-600 transition-colors leading-tight mb-1">{act.title}</div>
+                <div className="text-xs text-slate-500 line-clamp-2 leading-relaxed">{act.desc}</div>
               </div>
             </Card>
           </Link>

@@ -36,10 +36,10 @@ export const ChatHistoryPage = () => {
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
             <History className="w-6 h-6 text-blue-500" /> RAG Medical Chat History
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1">
             Search, review, continue, or delete prior AI medical consultations.
           </p>
         </div>
@@ -51,7 +51,7 @@ export const ChatHistoryPage = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search chat history..."
-            className="w-full bg-slate-900 border border-slate-700/80 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+            className="w-full bg-white border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500"
           />
         </div>
       </div>
@@ -61,21 +61,21 @@ export const ChatHistoryPage = () => {
           <div key={s.chat_id} className="glass-card rounded-2xl p-5 flex flex-col justify-between space-y-4">
             <div>
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-semibold text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">
+                <span className="text-[10px] font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
                   {s.messages_count || 2} Messages
                 </span>
                 <span className="text-[10px] text-slate-500">{new Date(s.last_updated).toLocaleDateString()}</span>
               </div>
-              <h3 className="font-bold text-sm text-white mt-2 flex items-center gap-2">
+              <h3 className="font-bold text-sm text-slate-900 mt-2 flex items-center gap-2">
                 <MessageSquare className="w-4 h-4 text-blue-400 shrink-0" />
                 <span>{s.title}</span>
               </h3>
             </div>
 
-            <div className="pt-3 border-t border-slate-800 flex items-center justify-between">
+            <div className="pt-3 border-t border-slate-200 flex items-center justify-between">
               <button
                 onClick={() => handleDelete(s.chat_id)}
-                className="text-xs text-rose-400 hover:text-rose-300 flex items-center gap-1"
+                className="text-xs text-rose-500 hover:text-rose-600 flex items-center gap-1"
               >
                 <Trash2 className="w-3.5 h-3.5" /> Delete
               </button>

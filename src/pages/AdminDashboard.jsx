@@ -19,10 +19,10 @@ export const AdminDashboard = () => {
       <DisclaimerBanner />
 
       <div>
-        <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+        <h1 className="text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
           <ShieldCheck className="w-6 h-6 text-emerald-500" /> Admin Command Dashboard
         </h1>
-        <p className="text-xs text-slate-400 mt-1">
+        <p className="text-xs text-slate-500 mt-1">
           System telemetry, AI usage metrics, OCR accuracy, and error diagnostics.
         </p>
       </div>
@@ -31,46 +31,46 @@ export const AdminDashboard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="glass-card rounded-2xl p-5 border border-slate-800">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-400">Total Users</span>
+            <span className="text-xs font-semibold text-slate-500">Total Users</span>
             <Users className="w-4 h-4 text-blue-400" />
           </div>
-          <div className="text-2xl font-extrabold text-white mt-2">{stats.user_statistics?.total_users}</div>
+          <div className="text-2xl font-extrabold text-slate-900 mt-2">{stats.user_statistics?.total_users}</div>
           <div className="text-[11px] text-emerald-400 mt-1">+{stats.user_statistics?.new_signups_this_week} this week</div>
         </div>
 
         <div className="glass-card rounded-2xl p-5 border border-slate-800">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-400">Lab & Prescription Uploads</span>
+            <span className="text-xs font-semibold text-slate-500">Lab & Prescription Uploads</span>
             <FileText className="w-4 h-4 text-emerald-400" />
           </div>
-          <div className="text-2xl font-extrabold text-white mt-2">
+          <div className="text-2xl font-extrabold text-slate-900 mt-2">
             {(stats.upload_analytics?.total_lab_reports || 0) + (stats.upload_analytics?.total_prescriptions || 0)}
           </div>
-          <div className="text-[11px] text-slate-400 mt-1">Lab reports + Scans</div>
+          <div className="text-[11px] text-slate-500 mt-1">Lab reports + Scans</div>
         </div>
 
         <div className="glass-card rounded-2xl p-5 border border-slate-800">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-400">Gemini 2.5 Flash Calls</span>
+            <span className="text-xs font-semibold text-slate-500">Gemini 2.5 Flash Calls</span>
             <Cpu className="w-4 h-4 text-purple-400" />
           </div>
-          <div className="text-2xl font-extrabold text-white mt-2">{stats.ai_usage_statistics?.gemini_2_5_flash_calls}</div>
+          <div className="text-2xl font-extrabold text-slate-900 mt-2">{stats.ai_usage_statistics?.gemini_2_5_flash_calls}</div>
           <div className="text-[11px] text-purple-400 mt-1">{stats.ai_usage_statistics?.total_ai_tokens_processed} Tokens</div>
         </div>
 
         <div className="glass-card rounded-2xl p-5 border border-slate-800">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-400">AI Confidence Rating</span>
+            <span className="text-xs font-semibold text-slate-500">AI Confidence Rating</span>
             <Star className="w-4 h-4 text-amber-400" />
           </div>
           <div className="text-2xl font-extrabold text-amber-400 mt-2">{stats.ai_usage_statistics?.ai_accuracy_confidence}</div>
-          <div className="text-[11px] text-slate-400 mt-1">Avg latency: {stats.ai_usage_statistics?.avg_response_latency_ms}ms</div>
+          <div className="text-[11px] text-slate-500 mt-1">Avg latency: {stats.ai_usage_statistics?.avg_response_latency_ms}ms</div>
         </div>
       </div>
 
       {/* Error Logs */}
       <div className="glass-card rounded-2xl p-6 space-y-4">
-        <h3 className="text-sm font-bold text-white flex items-center gap-2">
+        <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 text-amber-400" /> System Diagnostics & Error Logs
         </h3>
 
@@ -82,7 +82,7 @@ export const AdminDashboard = () => {
                   {err.level}
                 </span>
                 <span className="font-semibold text-white">[{err.component}]</span>
-                <span className="text-slate-300">{err.message}</span>
+                <span className="text-slate-400">{err.message}</span>
               </div>
               <span className="text-[10px] text-slate-500">{err.timestamp}</span>
             </div>
@@ -92,7 +92,7 @@ export const AdminDashboard = () => {
 
       {/* User Feedback */}
       <div className="glass-card rounded-2xl p-6 space-y-4">
-        <h3 className="text-sm font-bold text-white flex items-center gap-2">
+        <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
           <MessageSquare className="w-4 h-4 text-blue-400" /> Recent User Feedback
         </h3>
 
@@ -105,7 +105,7 @@ export const AdminDashboard = () => {
                   {'★'.repeat(f.rating)}
                 </div>
               </div>
-              <p className="text-slate-300 italic">"{f.comment}"</p>
+              <p className="text-slate-400 italic">"{f.comment}"</p>
               <div className="text-[10px] text-slate-500">{f.date}</div>
             </div>
           ))}

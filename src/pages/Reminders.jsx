@@ -107,9 +107,9 @@ export const Reminders = () => {
       <Card className="bg-gradient-to-r from-medical-50 to-white dark:from-medical-900/20 dark:to-slate-900 border-medical-100 dark:border-medical-500/20" padding="large">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <div className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Weekly Adherence Score</div>
-            <div className="text-4xl font-extrabold text-slate-800 dark:text-white flex items-baseline gap-2">
-              {overallAdherence}% <span className="text-lg font-semibold text-slate-500 dark:text-slate-400">Compliance</span>
+            <div className="text-sm font-bold text-slate-500 dark:text-slate-500 uppercase tracking-wider mb-2">Weekly Adherence Score</div>
+            <div className="text-4xl font-extrabold text-slate-900 dark:text-slate-100 flex items-baseline gap-2">
+              {overallAdherence}% <span className="text-lg font-semibold text-slate-500 dark:text-slate-500">Compliance</span>
             </div>
             <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400 mt-3 flex items-center gap-2">
               <TrendingUp className="w-4 h-4" /> High adherence supports your overall wellness score
@@ -143,7 +143,7 @@ export const Reminders = () => {
             <Card hover key={rem.id} className="flex flex-col h-full" padding="medium">
               <div className="flex items-start justify-between mb-4">
                 <div className="pr-4">
-                  <h3 className="font-bold text-lg text-slate-800 dark:text-slate-100 line-clamp-1">{rem.medicine_name}</h3>
+                  <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100 line-clamp-1">{rem.medicine_name}</h3>
                   <span className="text-sm font-semibold text-medical-600 dark:text-medical-400 mt-0.5 inline-block">{rem.dosage}</span>
                 </div>
                 <Badge variant="success" className="shrink-0 font-bold whitespace-nowrap">
@@ -152,14 +152,14 @@ export const Reminders = () => {
               </div>
 
               <div className="text-sm space-y-2 mb-6 flex-1">
-                <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
-                  <Clock className="w-4 h-4 text-slate-400" />
+                <div className="flex items-center gap-2 text-slate-900 dark:text-slate-400">
+                  <Clock className="w-4 h-4 text-slate-500" />
                   <span className="font-medium">{rem.time_slots?.join(', ')}</span>
-                  <span className="text-slate-400">•</span>
+                  <span className="text-slate-500">•</span>
                   <span>{rem.schedule?.join(', ')}</span>
                 </div>
                 {rem.instructions && (
-                  <div className="text-slate-500 dark:text-slate-400 italic bg-slate-50 dark:bg-slate-800/50 p-2.5 rounded-lg border border-slate-100 dark:border-slate-700/50">
+                  <div className="text-slate-500 dark:text-slate-500 italic bg-slate-50 dark:bg-slate-800/50 p-2.5 rounded-lg border border-slate-100 dark:border-slate-700/50">
                     "{rem.instructions}"
                   </div>
                 )}
@@ -167,8 +167,8 @@ export const Reminders = () => {
 
               <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80 mt-auto">
                 <div className="flex items-center justify-between gap-2">
-                  <div className="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                    Status: <span className={`font-bold ${isTaken ? 'text-emerald-600 dark:text-emerald-400' : isSkipped ? 'text-rose-600 dark:text-rose-400' : 'text-slate-700 dark:text-slate-300'}`}>{rem.status_today}</span>
+                  <div className="text-xs font-semibold text-slate-500 dark:text-slate-500">
+                    Status: <span className={`font-bold ${isTaken ? 'text-emerald-600 dark:text-emerald-400' : isSkipped ? 'text-rose-600 dark:text-rose-400' : 'text-slate-900 dark:text-slate-400'}`}>{rem.status_today}</span>
                   </div>
 
                   <div className="flex items-center gap-2">
@@ -205,8 +205,8 @@ export const Reminders = () => {
       
       {reminders.length === 0 && (
         <Card className="flex flex-col items-center justify-center p-16 text-center text-slate-500 min-h-[300px]">
-          <Clock className="w-12 h-12 text-slate-300 dark:text-slate-700 mb-4" />
-          <p className="text-base font-medium text-slate-600 dark:text-slate-300 mb-2">No reminders scheduled</p>
+          <Clock className="w-12 h-12 text-slate-400 dark:text-slate-900 mb-4" />
+          <p className="text-base font-medium text-slate-900 dark:text-slate-400 mb-2">No reminders scheduled</p>
           <p className="text-sm">Click "Add Reminder" to start tracking your medication.</p>
         </Card>
       )}
@@ -233,7 +233,7 @@ export const Reminders = () => {
                   <div className="w-10 h-10 rounded-xl bg-medical-50 dark:bg-medical-500/10 text-medical-600 dark:text-medical-400 flex items-center justify-center">
                     <Clock className="w-5 h-5" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-800 dark:text-white">Add Medicine Reminder</h3>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">Add Medicine Reminder</h3>
                 </div>
 
                 <form onSubmit={handleAddReminder} className="space-y-4">

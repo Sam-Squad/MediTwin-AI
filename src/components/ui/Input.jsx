@@ -13,13 +13,13 @@ export const Input = forwardRef(({
   return (
     <div className={`flex flex-col gap-1.5 w-full ${className}`}>
       {label && (
-        <label htmlFor={inputId} className="text-sm font-medium text-slate-700 dark:text-slate-300 ml-1">
+        <label htmlFor={inputId} className="text-sm font-medium text-slate-900 dark:text-slate-500 ml-1">
           {label}
         </label>
       )}
       <div className="relative flex items-center">
         {Icon && (
-          <div className="absolute left-3.5 text-slate-400 dark:text-slate-500 pointer-events-none">
+          <div className="absolute left-3.5 text-slate-500 dark:text-slate-500 pointer-events-none">
             <Icon className="w-5 h-5" />
           </div>
         )}

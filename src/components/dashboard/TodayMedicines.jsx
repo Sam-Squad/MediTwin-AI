@@ -16,8 +16,8 @@ export const TodayMedicines = ({ reminders = [], onStatusChange }) => {
             <Pill className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-slate-800 dark:text-slate-100">Today's Medicines</h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Daily adherence schedule</p>
+            <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">Today's Medicines</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-500 mt-0.5">Daily adherence schedule</p>
           </div>
         </div>
         <Badge variant={takenCount === totalCount && totalCount > 0 ? 'success' : 'neutral'}>
@@ -47,15 +47,15 @@ export const TodayMedicines = ({ reminders = [], onStatusChange }) => {
                     ? 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400' 
                     : isSkipped
                     ? 'bg-rose-100 dark:bg-rose-500/20 text-rose-600 dark:text-rose-400'
-                    : 'bg-slate-100 dark:bg-slate-700/50 text-slate-500 dark:text-slate-400'
+                    : 'bg-slate-100 dark:bg-slate-700/50 text-slate-500 dark:text-slate-500'
                 }`}>
                   <Clock className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className={`font-bold text-sm ${isTaken ? 'text-emerald-800 dark:text-emerald-300' : isSkipped ? 'text-rose-800 dark:text-rose-300' : 'text-slate-800 dark:text-slate-100'}`}>
+                  <div className={`font-bold text-sm ${isTaken ? 'text-emerald-800 dark:text-emerald-300' : isSkipped ? 'text-rose-800 dark:text-rose-300' : 'text-slate-900 dark:text-slate-100'}`}>
                     {med.medicine_name} <span className="font-normal opacity-70 text-xs">({med.dosage})</span>
                   </div>
-                  <div className={`text-xs mt-0.5 ${isTaken ? 'text-emerald-600 dark:text-emerald-400/80' : isSkipped ? 'text-rose-600 dark:text-rose-400/80' : 'text-slate-500 dark:text-slate-400'}`}>
+                  <div className={`text-xs mt-0.5 ${isTaken ? 'text-emerald-600 dark:text-emerald-400/80' : isSkipped ? 'text-rose-600 dark:text-rose-400/80' : 'text-slate-500 dark:text-slate-500'}`}>
                     {med.schedule?.join(', ')} • {med.instructions}
                   </div>
                 </div>
@@ -67,7 +67,7 @@ export const TodayMedicines = ({ reminders = [], onStatusChange }) => {
                   className={`p-2 rounded-xl border text-xs font-semibold flex items-center gap-1.5 transition-all ${
                     isTaken
                       ? 'bg-emerald-500 text-white border-emerald-500 shadow-sm'
-                      : 'bg-white dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-600 hover:text-emerald-600 dark:hover:text-emerald-400 hover:border-emerald-200 dark:hover:border-emerald-500/30'
+                      : 'bg-white dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 text-slate-900 dark:text-slate-500 border-slate-200 dark:border-slate-600 hover:text-emerald-600 dark:hover:text-emerald-400 hover:border-emerald-200 dark:hover:border-emerald-500/30'
                   }`}
                   title="Mark Taken"
                 >
@@ -80,7 +80,7 @@ export const TodayMedicines = ({ reminders = [], onStatusChange }) => {
                   className={`p-2 rounded-xl border transition-all ${
                     isSkipped
                       ? 'bg-rose-500 text-white border-rose-500 shadow-sm'
-                      : 'bg-white dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-rose-500/10 text-slate-400 border-slate-200 dark:border-slate-600 hover:text-rose-600 dark:hover:text-rose-400 hover:border-rose-200 dark:hover:border-rose-500/30'
+                      : 'bg-white dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-rose-500/10 text-slate-500 border-slate-200 dark:border-slate-600 hover:text-rose-600 dark:hover:text-rose-400 hover:border-rose-200 dark:hover:border-rose-500/30'
                   }`}
                   title="Skip Dose"
                 >

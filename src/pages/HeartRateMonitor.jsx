@@ -234,11 +234,11 @@ export const HeartRateMonitor = () => {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
         {/* Heart Rate Variability Card */}
         <Card padding="medium" className="flex flex-col">
-          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-3">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-500 mb-3">
             <span className="text-xs font-bold uppercase tracking-wider">HRV</span>
             <Activity className="w-4 h-4 text-blue-500" />
           </div>
-          <div className="text-3xl font-extrabold text-slate-800 dark:text-white flex items-baseline gap-1 mb-1">
+          <div className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 flex items-baseline gap-1 mb-1">
             {vitalsMetrics.hrv_ms} <span className="text-sm font-semibold text-slate-500">ms</span>
           </div>
           <div className="text-xs font-medium text-emerald-600 dark:text-emerald-400 mb-3 flex-1">Heart Rate Variability</div>
@@ -254,14 +254,14 @@ export const HeartRateMonitor = () => {
 
         {/* Resting Heart Rate Trend Card */}
         <Card padding="medium" className="flex flex-col">
-          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-3">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-500 mb-3">
             <span className="text-xs font-bold uppercase tracking-wider">Resting HR</span>
             <TrendingUp className="w-4 h-4 text-emerald-500" />
           </div>
-          <div className="text-3xl font-extrabold text-slate-800 dark:text-white flex items-baseline gap-1 mb-1">
+          <div className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 flex items-baseline gap-1 mb-1">
             {vitalsMetrics.resting_hr_bpm} <span className="text-sm font-semibold text-slate-500">BPM</span>
           </div>
-          <div className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-3 flex-1">Baseline HR Trend</div>
+          <div className="text-xs font-medium text-slate-500 dark:text-slate-500 mb-3 flex-1">Baseline HR Trend</div>
           <div className="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
             <motion.div 
               initial={{ width: 0 }}
@@ -274,11 +274,11 @@ export const HeartRateMonitor = () => {
 
         {/* Estimated Blood Oxygen (SpO2) Card */}
         <Card padding="medium" className="flex flex-col">
-          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-3">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-500 mb-3">
             <span className="text-xs font-bold uppercase tracking-wider">SpO2</span>
             <Droplets className="w-4 h-4 text-teal-500" />
           </div>
-          <div className="text-3xl font-extrabold text-slate-800 dark:text-white flex items-baseline gap-1 mb-1">
+          <div className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 flex items-baseline gap-1 mb-1">
             {vitalsMetrics.spo2_oxygen_pct} <span className="text-sm font-semibold text-slate-500">%</span>
           </div>
           <div className="text-xs font-medium text-teal-600 dark:text-teal-400 mb-3 flex-1">Est. Blood Saturation</div>
@@ -294,11 +294,11 @@ export const HeartRateMonitor = () => {
 
         {/* Stress Level Estimate Card */}
         <Card padding="medium" className="flex flex-col">
-          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-3">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-500 mb-3">
             <span className="text-xs font-bold uppercase tracking-wider">Stress Level</span>
             <Zap className="w-4 h-4 text-amber-500" />
           </div>
-          <div className="text-3xl font-extrabold text-slate-800 dark:text-white flex items-baseline gap-1 mb-1">
+          <div className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 flex items-baseline gap-1 mb-1">
             {vitalsMetrics.stress_index} <span className="text-sm font-semibold text-slate-500">/100</span>
           </div>
           <div className="text-xs font-medium text-amber-600 dark:text-amber-400 mb-3 flex-1">{vitalsMetrics.stress_label}</div>
@@ -314,11 +314,11 @@ export const HeartRateMonitor = () => {
 
         {/* Breathing Rate Estimate Card */}
         <Card padding="medium" className="flex flex-col col-span-2 sm:col-span-1">
-          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-3">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-500 mb-3">
             <span className="text-xs font-bold uppercase tracking-wider">Breathing</span>
             <Wind className="w-4 h-4 text-indigo-500" />
           </div>
-          <div className="text-3xl font-extrabold text-slate-800 dark:text-white flex items-baseline gap-1 mb-1">
+          <div className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 flex items-baseline gap-1 mb-1">
             {vitalsMetrics.breathing_rate_rpm} <span className="text-sm font-semibold text-slate-500">RPM</span>
           </div>
           <div className="text-xs font-medium text-indigo-600 dark:text-indigo-400 mb-3 flex-1">Est. Respiration</div>
@@ -344,7 +344,7 @@ export const HeartRateMonitor = () => {
               <button
                 onClick={() => setMeasurementMode('camera')}
                 className={`flex-1 py-2.5 rounded-lg flex items-center justify-center gap-2 text-sm font-bold transition-all ${
-                  measurementMode === 'camera' ? 'bg-white dark:bg-slate-800 text-brand-600 dark:text-brand-400 shadow-sm border border-slate-200 dark:border-slate-700' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
+                  measurementMode === 'camera' ? 'bg-white dark:bg-slate-800 text-brand-600 dark:text-brand-400 shadow-sm border border-slate-200 dark:border-slate-700' : 'text-slate-500 hover:text-slate-900 dark:text-slate-500 dark:hover:text-slate-200'
                 }`}
               >
                 <Camera className="w-4 h-4" />
@@ -353,7 +353,7 @@ export const HeartRateMonitor = () => {
               <button
                 onClick={() => setMeasurementMode('touch')}
                 className={`flex-1 py-2.5 rounded-lg flex items-center justify-center gap-2 text-sm font-bold transition-all ${
-                  measurementMode === 'touch' ? 'bg-white dark:bg-slate-800 text-brand-600 dark:text-brand-400 shadow-sm border border-slate-200 dark:border-slate-700' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
+                  measurementMode === 'touch' ? 'bg-white dark:bg-slate-800 text-brand-600 dark:text-brand-400 shadow-sm border border-slate-200 dark:border-slate-700' : 'text-slate-500 hover:text-slate-900 dark:text-slate-500 dark:hover:text-slate-200'
                 }`}
               >
                 <Activity className="w-4 h-4" />
@@ -431,10 +431,10 @@ export const HeartRateMonitor = () => {
               )}
             </div>
 
-            <div className="mt-6 pt-5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-medium text-slate-500 dark:text-slate-400">
+            <div className="mt-6 pt-5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-medium text-slate-500 dark:text-slate-500">
               <span className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.5)]" /> 
-                Signal Quality: <strong className="text-slate-800 dark:text-white">{signalQuality}</strong>
+                Signal Quality: <strong className="text-slate-900 dark:text-slate-100">{signalQuality}</strong>
               </span>
               <span>Method: {measurementMode === 'camera' ? 'Camera PPG' : 'Touch Sensor'}</span>
             </div>
@@ -444,9 +444,9 @@ export const HeartRateMonitor = () => {
           <Card padding="large">
             <div className="flex items-center gap-2 mb-2">
               <Stethoscope className="w-5 h-5 text-brand-500" />
-              <h3 className="text-base font-bold text-slate-800 dark:text-white">Symptom & Condition Intake</h3>
+              <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">Symptom & Condition Intake</h3>
             </div>
-            <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-5">
+            <p className="text-slate-500 dark:text-slate-500 text-sm font-medium mb-5">
               Select any symptoms to combine with your PPG vitals scan:
             </p>
 
@@ -461,7 +461,7 @@ export const HeartRateMonitor = () => {
                     className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all flex items-center justify-between border ${
                       isSelected
                         ? 'bg-brand-50 dark:bg-brand-500/10 border-brand-200 dark:border-brand-500/30 text-brand-700 dark:text-brand-300 ring-1 ring-brand-500/30'
-                        : 'bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
+                        : 'bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800'
                     }`}
                   >
                     <span>{symptom}</span>
@@ -499,7 +499,7 @@ export const HeartRateMonitor = () => {
                 <span className="text-xs text-brand-600 dark:text-brand-400 font-bold uppercase tracking-wider flex items-center gap-1.5 mb-1">
                   <Activity className="w-3.5 h-3.5" /> AI Vitals Assessment
                 </span>
-                <h2 className="text-xl font-extrabold text-slate-800 dark:text-white">
+                <h2 className="text-xl font-extrabold text-slate-900 dark:text-slate-100">
                   {aiResults?.status || 'Normal Resting Heart Rate'}
                 </h2>
               </div>
@@ -516,13 +516,13 @@ export const HeartRateMonitor = () => {
 
             {/* AI Insights Bullets */}
             <div className="space-y-4 mb-8">
-              <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+              <h4 className="text-sm font-bold text-slate-900 dark:text-slate-200 flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-brand-500" />
                 AI Health Scan Findings
               </h4>
               <div className="space-y-3">
                 {aiResults?.ai_insights?.map((insight, idx) => (
-                  <div key={idx} className="p-4 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700/80 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 leading-relaxed flex items-start gap-3 shadow-sm">
+                  <div key={idx} className="p-4 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700/80 rounded-xl text-sm font-medium text-slate-900 dark:text-slate-400 leading-relaxed flex items-start gap-3 shadow-sm">
                     <span className="w-2 h-2 rounded-full bg-brand-400 mt-1.5 shrink-0" />
                     <span>{insight}</span>
                   </div>
@@ -532,7 +532,7 @@ export const HeartRateMonitor = () => {
 
             {/* AI Action Steps */}
             <div className="space-y-4 mb-8">
-              <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+              <h4 className="text-sm font-bold text-slate-900 dark:text-slate-200 flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                 Personalized Health Action Steps
               </h4>
@@ -548,7 +548,7 @@ export const HeartRateMonitor = () => {
 
             {/* Questions for Doctor */}
             <div className="space-y-4">
-              <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+              <h4 className="text-sm font-bold text-slate-900 dark:text-slate-200 flex items-center gap-2">
                 <HelpCircle className="w-4 h-4 text-purple-500" />
                 Recommended Questions for Doctor
               </h4>
@@ -562,7 +562,7 @@ export const HeartRateMonitor = () => {
               </div>
             </div>
 
-            <div className="mt-8 pt-5 border-t border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-500 dark:text-slate-400 flex items-start gap-2.5">
+            <div className="mt-8 pt-5 border-t border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-500 dark:text-slate-500 flex items-start gap-2.5">
               <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
               <span className="leading-relaxed">{aiResults?.disclaimer || "PPG camera vitals tracking and estimated SpO2/HRV metrics are designed strictly for AI health scan analysis and do not replace professional medical advice."}</span>
             </div>

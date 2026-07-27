@@ -1,16 +1,22 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, FileText, Bot, Pill, Clock,
   HeartPulse, ImageIcon, History, UserCheck,
   Calendar, Sparkles, ShieldAlert, User, ShieldCheck,
-  Activity
+  Activity, LogOut
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import Badge from '../ui/Badge';
 
 export const Sidebar = ({ isOpen, onClose }) => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   const navGroups = [
     {
@@ -72,10 +78,10 @@ export const Sidebar = ({ isOpen, onClose }) => {
       <aside
         className={`fixed lg:sticky top-0 lg:top-4 left-0 lg:left-4 z-50 h-screen lg:h-[calc(100vh-32px)] w-[260px] 
         bg-surface-card lg:rounded-20px lg:shadow-card lg:border border-slate-200/60
-        overflow-y-auto transition-transform duration-300 ease-in-out shrink-0
+        flex flex-col overflow-hidden transition-transform duration-300 ease-in-out shrink-0
         ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}
       >
-        <div className="flex h-20 items-center px-6 border-b border-slate-100 mb-2">
+        <div className="flex shrink-0 h-20 items-center px-6 border-b border-slate-100">
           <div className="flex items-center gap-3">
             {/* Branded SVG Logo Mark */}
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center shadow-md shrink-0">
@@ -89,15 +95,15 @@ export const Sidebar = ({ isOpen, onClose }) => {
               <span className="text-sm font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
                 MediTwin
               </span>
-              <span className="text-[10px] font-semibold text-slate-400 tracking-widest uppercase">AI</span>
+              <span className="text-[10px] font-semibold text-slate-500 tracking-widest uppercase">AI</span>
             </div>
           </div>
         </div>
 
-        <div className="p-4 space-y-6">
+        <div className="p-4 space-y-6 flex-1 overflow-y-auto">
           {navGroups.map((group, idx) => (
             <div key={idx} className="space-y-1.5">
-              <div className="text-[10px] font-bold tracking-wider text-slate-400 uppercase px-3 mb-2">
+              <div className="text-[10px] font-bold tracking-wider text-slate-500 uppercase px-3 mb-2">
                 {group.label}
               </div>
               <nav className="space-y-1">
@@ -141,6 +147,26 @@ export const Sidebar = ({ isOpen, onClose }) => {
               AI medical analysis engine running with RAG memory context.
             </p>
           </div>
+        </div>
+
+        {/* User Profile & Logout */}
+        <div className="shrink-0 p-4 border-t border-slate-100">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white text-xs font-bold shadow-md shrink-0">
+              {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-semibold text-slate-900 truncate">{user?.name || 'Demo User'}</p>
+              <p className="text-[11px] text-slate-500 truncate">{user?.email || 'demo@meditwin.ai'}</p>
+            </div>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-red-500 bg-red-50 hover:bg-red-100 hover:text-red-600 transition-all duration-200 group"
+          >
+            <LogOut className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+            <span>Sign Out</span>
+          </button>
         </div>
       </aside>
     </>

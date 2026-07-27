@@ -29,22 +29,22 @@ export const TimelinePage = () => {
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
             <Calendar className="w-6 h-6 text-blue-500" /> Chronological Health Timeline
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1">
             Complete historical stream of lab reports, scans, prescriptions, reminders, and AI consultations.
           </p>
         </div>
 
         {/* Filter Pills */}
-        <div className="flex items-center gap-1.5 bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-xs">
+        <div className="flex items-center gap-1.5 bg-slate-50 p-1.5 rounded-xl border border-slate-200 text-xs">
           {['all', 'report', 'prescription', 'image'].map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
               className={`px-3 py-1 rounded-lg capitalize font-medium transition ${
-                filter === cat ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'
+                filter === cat ? 'bg-blue-600 text-white' : 'text-slate-500 hover:text-slate-900'
               }`}
             >
               {cat}
@@ -54,25 +54,25 @@ export const TimelinePage = () => {
       </div>
 
       {/* Timeline List */}
-      <div className="relative pl-6 border-l-2 border-slate-800 space-y-6">
+      <div className="relative pl-6 border-l-2 border-slate-200 space-y-6">
         {filteredEvents.map((evt) => (
           <div key={evt.id} className="relative group">
             {/* Timeline Dot */}
-            <div className="absolute -left-[31px] top-1 w-5 h-5 rounded-full bg-slate-900 border-2 border-blue-500 flex items-center justify-center">
+            <div className="absolute -left-[31px] top-1 w-5 h-5 rounded-full bg-slate-100 border-2 border-blue-500 flex items-center justify-center">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
             </div>
 
-            <div className="glass-card rounded-2xl p-5 border border-slate-800 hover:border-blue-500/40 transition">
+            <div className="glass-card rounded-2xl p-5 border border-slate-200 hover:border-blue-500/40 transition">
               <div className="flex items-center justify-between mb-1">
                 <div className="flex items-center gap-2">
                   {getEventIcon(evt.event_type)}
-                  <h3 className="font-bold text-sm text-white">{evt.title}</h3>
+                  <h3 className="font-bold text-sm text-slate-900">{evt.title}</h3>
                 </div>
                 <span className="text-[10px] text-slate-500 font-mono">
                   {new Date(evt.timestamp).toLocaleString()}
                 </span>
               </div>
-              <p className="text-xs text-slate-300 leading-relaxed mt-1">{evt.description}</p>
+              <p className="text-xs text-slate-500 leading-relaxed mt-1">{evt.description}</p>
             </div>
           </div>
         ))}

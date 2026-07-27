@@ -45,10 +45,10 @@ export const DoctorCopilotPage = () => {
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
             <UserCheck className="w-6 h-6 text-amber-500" /> Doctor Visit Copilot & PDF Generator
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1">
             Synthesize active prescriptions, lab report summaries, and current symptoms into a printable doctor visit prep sheet.
           </p>
         </div>
@@ -66,7 +66,7 @@ export const DoctorCopilotPage = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Symptoms Form */}
         <div className="lg:col-span-5 glass-card rounded-2xl p-6 space-y-4">
-          <h3 className="text-sm font-bold text-white flex items-center gap-2">
+          <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-amber-400" /> Step 1: Input Recent Symptoms
           </h3>
 
@@ -76,7 +76,7 @@ export const DoctorCopilotPage = () => {
               value={newSymptom}
               onChange={(e) => setNewSymptom(e.target.value)}
               placeholder="e.g. Mild headache, joint stiffness..."
-              className="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"
+              className="flex-1 bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 placeholder-slate-400"
             />
             <button type="submit" className="p-2 bg-amber-600 hover:bg-amber-500 text-white rounded-xl">
               <Plus className="w-4 h-4" />
@@ -85,9 +85,9 @@ export const DoctorCopilotPage = () => {
 
           <div className="space-y-2 pt-2">
             {symptoms.map((sym, idx) => (
-              <div key={idx} className="p-3 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-between text-xs text-slate-200">
+              <div key={idx} className="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between text-xs text-slate-700">
                 <span>{sym}</span>
-                <button onClick={() => handleRemoveSymptom(idx)} className="text-rose-400 hover:text-rose-300">
+                <button onClick={() => handleRemoveSymptom(idx)} className="text-rose-500 hover:text-rose-600">
                   <Trash2 className="w-3.5 h-3.5" />
                 </button>
               </div>
@@ -96,30 +96,30 @@ export const DoctorCopilotPage = () => {
         </div>
 
         {/* Live Preview Card */}
-        <div className="lg:col-span-7 glass-card rounded-2xl p-6 space-y-4 border border-amber-500/20 bg-amber-500/5">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div className="lg:col-span-7 glass-card rounded-2xl p-6 space-y-4 border border-amber-200 bg-amber-50/50">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-200">
             <div>
-              <span className="text-[10px] font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+              <span className="text-[10px] font-bold text-amber-600 bg-amber-100 px-2 py-0.5 rounded border border-amber-200">
                 Live PDF Sheet Preview
               </span>
-              <h3 className="text-sm font-bold text-white mt-1">Doctor Visit Preparation Sheet</h3>
+              <h3 className="text-sm font-bold text-slate-900 mt-1">Doctor Visit Preparation Sheet</h3>
             </div>
             <FileText className="w-6 h-6 text-amber-400" />
           </div>
 
-          <div className="space-y-3 text-xs text-slate-300">
+          <div className="space-y-3 text-xs text-slate-700">
             <div>
-              <strong className="text-white">Active Prescriptions Included:</strong> Amoxicillin 500mg, Metformin 500mg
+              <strong className="text-slate-900">Active Prescriptions Included:</strong> Amoxicillin 500mg, Metformin 500mg
             </div>
             <div>
-              <strong className="text-white">Recent Lab Highlights Included:</strong> Hemoglobin 11.8 g/dL (Mild Low), Fasting Blood Sugar 108 mg/dL
+              <strong className="text-slate-900">Recent Lab Highlights Included:</strong> Hemoglobin 11.8 g/dL (Mild Low), Fasting Blood Sugar 108 mg/dL
             </div>
             <div>
-              <strong className="text-white">Patient Symptoms:</strong> {symptoms.join(', ') || 'None listed'}
+              <strong className="text-slate-900">Patient Symptoms:</strong> {symptoms.join(', ') || 'None listed'}
             </div>
             <div>
-              <strong className="text-white">Generated Physician Questions:</strong>
-              <ul className="list-disc pl-5 mt-1 space-y-1 text-slate-400">
+              <strong className="text-slate-900">Generated Physician Questions:</strong>
+              <ul className="list-disc pl-5 mt-1 space-y-1 text-slate-500">
                 <li>Should I consider dietary iron adjustments for my hemoglobin level?</li>
                 <li>Are my current prescription dosages aligned with my lab results?</li>
               </ul>

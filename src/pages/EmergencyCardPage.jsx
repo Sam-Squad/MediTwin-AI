@@ -20,10 +20,10 @@ export const EmergencyCardPage = () => {
       <DisclaimerBanner />
 
       <div className="text-center space-y-1">
-        <h1 className="text-2xl font-bold text-white tracking-tight flex items-center justify-center gap-2">
+        <h1 className="text-2xl font-bold text-slate-900 tracking-tight flex items-center justify-center gap-2">
           <ShieldAlert className="w-7 h-7 text-rose-500 animate-pulse" /> Emergency QR Medical Profile
         </h1>
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-slate-500">
           Instant scannable medical ID card for first responders and ER personnel.
         </p>
       </div>
@@ -38,21 +38,21 @@ export const EmergencyCardPage = () => {
                 {card.blood_group}
               </div>
               <div>
-                <h2 className="text-xl font-extrabold text-white">{card.user_name}</h2>
+                <h2 className="text-xl font-extrabold text-slate-900">{card.user_name}</h2>
                 <span className="text-xs text-rose-400 font-semibold uppercase tracking-wider">Blood Group: {card.blood_group}</span>
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div className="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
-                <div className="text-slate-400 font-semibold flex items-center gap-1.5 mb-1">
+                <div className="text-slate-500 font-semibold flex items-center gap-1.5 mb-1">
                   <Phone className="w-3.5 h-3.5 text-emerald-400" /> Emergency Contact
                 </div>
-                <div className="font-bold text-white text-sm">{card.emergency_contact}</div>
+                <div className="font-bold text-slate-900 text-sm">{card.emergency_contact}</div>
               </div>
 
               <div className="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
-                <div className="text-slate-400 font-semibold flex items-center gap-1.5 mb-1">
+                <div className="text-slate-500 font-semibold flex items-center gap-1.5 mb-1">
                   <AlertCircle className="w-3.5 h-3.5 text-amber-400" /> Known Allergies
                 </div>
                 <div className="font-medium text-amber-300">{card.allergies?.join(', ')}</div>
@@ -60,7 +60,7 @@ export const EmergencyCardPage = () => {
             </div>
 
             <div className="p-3 bg-slate-900/80 rounded-xl border border-slate-800 text-xs">
-              <div className="text-slate-400 font-semibold flex items-center gap-1.5 mb-1">
+              <div className="text-slate-500 font-semibold flex items-center gap-1.5 mb-1">
                 <Pill className="w-3.5 h-3.5 text-blue-400" /> Current Prescriptions
               </div>
               <div className="text-slate-200">{card.current_medicines?.join(', ')}</div>
@@ -70,7 +70,7 @@ export const EmergencyCardPage = () => {
           {/* QR Code Container */}
           <div className="bg-white p-5 rounded-2xl shadow-glow flex flex-col items-center justify-center shrink-0">
             <QRCodeSVG value={card.qr_code_payload || 'EMERGENCY MEDICAL PROFILE'} size={170} />
-            <span className="text-[10px] font-bold text-slate-800 mt-2 uppercase tracking-wider">Scan for Medical ID</span>
+            <span className="text-[10px] font-bold text-slate-900 mt-2 uppercase tracking-wider">Scan for Medical ID</span>
           </div>
         </div>
       </div>

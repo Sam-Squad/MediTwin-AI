@@ -34,10 +34,10 @@ export const WellnessPage = () => {
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
             <Sparkles className="w-6 h-6 text-emerald-500" /> AI Wellness Coach & Daily Habits
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1">
             Personalized conservative wellness recommendations based on your lab history & physical goals.
           </p>
         </div>
@@ -53,17 +53,17 @@ export const WellnessPage = () => {
             </div>
             <button
               onClick={() => handleWaterAdd(250)}
-              className="px-3 py-1.5 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-xs font-semibold rounded-xl border border-cyan-500/30 transition"
+              className="px-3 py-1.5 bg-cyan-50 hover:bg-cyan-100 text-cyan-600 text-xs font-semibold rounded-xl border border-cyan-200 transition"
             >
               +250 mL
             </button>
           </div>
           <div>
-            <div className="text-xs font-semibold text-slate-400">Daily Water Target</div>
-            <div className="text-2xl font-extrabold text-white mt-1">
+            <div className="text-xs font-semibold text-slate-500">Daily Water Target</div>
+            <div className="text-2xl font-extrabold text-slate-900 mt-1">
               {wellness.water_intake_ml} / {wellness.water_goal_ml} mL
             </div>
-            <div className="w-full bg-slate-800 h-2 rounded-full mt-3 overflow-hidden">
+            <div className="w-full bg-slate-200 h-2 rounded-full mt-3 overflow-hidden">
               <div
                 className="bg-cyan-400 h-full rounded-full transition-all duration-500"
                 style={{ width: `${Math.min(100, (wellness.water_intake_ml / wellness.water_goal_ml) * 100)}%` }}
@@ -83,8 +83,8 @@ export const WellnessPage = () => {
             </span>
           </div>
           <div>
-            <div className="text-xs font-semibold text-slate-400">Walking Goal</div>
-            <div className="text-2xl font-extrabold text-white mt-1">
+            <div className="text-xs font-semibold text-slate-500">Walking Goal</div>
+            <div className="text-2xl font-extrabold text-slate-900 mt-1">
               {wellness.steps_count} / {wellness.steps_goal} steps
             </div>
             <div className="w-full bg-slate-800 h-2 rounded-full mt-3 overflow-hidden">
@@ -107,8 +107,8 @@ export const WellnessPage = () => {
             </span>
           </div>
           <div>
-            <div className="text-xs font-semibold text-slate-400">Sleep Duration</div>
-            <div className="text-2xl font-extrabold text-white mt-1">
+            <div className="text-xs font-semibold text-slate-500">Sleep Duration</div>
+            <div className="text-2xl font-extrabold text-slate-900 mt-1">
               {wellness.sleep_hours} / {wellness.sleep_goal} hrs
             </div>
             <div className="w-full bg-slate-800 h-2 rounded-full mt-3 overflow-hidden">
@@ -123,12 +123,12 @@ export const WellnessPage = () => {
 
       {/* AI Recommendations */}
       <div className="glass-card rounded-2xl p-6 space-y-4">
-        <h3 className="text-sm font-bold text-white flex items-center gap-2">
+        <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
           <Sparkles className="w-4 h-4 text-emerald-400" /> Daily Wellness Tips
         </h3>
         <div className="space-y-3">
           {wellness.daily_tips?.map((tip, idx) => (
-            <div key={idx} className="p-4 bg-slate-900/80 border border-slate-800 rounded-xl flex items-start gap-3 text-xs text-slate-200">
+            <div key={idx} className="p-4 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-3 text-xs text-slate-700">
               <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
               <span>{tip}</span>
             </div>

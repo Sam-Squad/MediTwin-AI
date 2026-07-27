@@ -1,130 +1,160 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 import { useAuth } from '../context/AuthContext';
-import { Activity, Mail, Lock, User, Heart, ArrowRight } from 'lucide-react';
+import { Mail, Lock, User, AlertCircle, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { GlassCard } from '../components/ui/GlassCard';
+import { PremiumButton } from '../components/ui/PremiumButton';
 
-export const Register = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    blood_group: 'O+',
-    emergency_contact: '',
-  });
-  const [loading, setLoading] = useState(false);
-  const { register } = useAuth();
+const registerSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  email: z.string().email('Please enter a valid email address'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
+});
+
+export default function Register() {
   const navigate = useNavigate();
+  const { register: registerAuth } = useAuth();
+  const [error, setError] = useState('');
+  
+  const { register: registerField, handleSubmit, formState: { errors, isSubmitting } } = useForm({
+    resolver: zodResolver(registerSchema)
+  });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+  const onSubmit = async (data) => {
     try {
-      await register(formData);
-      navigate('/', { replace: true });
+      setError('');
+      await registerAuth(data);
+      navigate('/');
     } catch (err) {
-      console.error("Registration error:", err);
-      // Fallback navigation in case of error
-      navigate('/', { replace: true });
-    } finally {
-      setLoading(false);
+      setError(err.response?.data?.detail || 'Registration failed. Please try again.');
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center px-4 py-8 relative overflow-hidden">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-6">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-600 to-emerald-500 text-white shadow-glow mb-3">
-            <Activity className="w-7 h-7" />
-          </div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">Create MediTwin Profile</h1>
-          <p className="text-xs text-slate-400 mt-1">Start organizing your health records and AI insights</p>
+    <div className="min-h-screen bg-surface flex items-center justify-center relative overflow-hidden px-4">
+      {/* Animated Background Orbs */}
+      <motion.div 
+        animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.4, 0.3] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-medical-500/20 rounded-full blur-[120px]"
+      />
+      <motion.div 
+        animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.5, 0.2] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-brand-500/20 rounded-full blur-[100px]"
+      />
+
+      <div className="w-full max-w-md z-10 my-8">
+        <div className="text-center mb-8">
+          <motion.div 
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="w-16 h-16 mx-auto bg-gradient-to-br from-medical-500 to-cyan-400 rounded-2xl flex items-center justify-center shadow-glow-green mb-6"
+          >
+            <Sparkles className="text-white w-8 h-8" />
+          </motion.div>
+          <motion.h1 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl font-extrabold text-slate-900 tracking-tight"
+          >
+            Create Account
+          </motion.h1>
+          <motion.p 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-slate-500 font-medium mt-2"
+          >
+            Join MediTwin AI for personalized healthcare
+          </motion.p>
         </div>
 
-        <div className="glass-card rounded-2xl p-6 sm:p-8 border border-slate-800">
-          <form onSubmit={handleSubmit} className="space-y-3.5">
-            <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Full Name</label>
-              <input
-                type="text"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
-                placeholder="Dr. Alex Morgan"
-                required
-              />
-            </div>
+        <GlassCard delay={0.3} className="!p-8">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+            {error && (
+              <motion.div 
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                className="p-3 bg-red-50 text-red-600 rounded-xl text-sm flex items-center gap-2 border border-red-100"
+              >
+                <AlertCircle className="w-4 h-4 shrink-0" />
+                <span>{error}</span>
+              </motion.div>
+            )}
 
-            <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Email Address</label>
-              <input
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
-                placeholder="alex@example.com"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Password</label>
-              <input
-                type="password"
-                value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
-                required
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">Blood Group</label>
-                <select
-                  value={formData.blood_group}
-                  onChange={(e) => setFormData({ ...formData, blood_group: e.target.value })}
-                  className="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500"
-                >
-                  {['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'].map((bg) => (
-                    <option key={bg} value={bg}>{bg}</option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">Emergency Contact</label>
+            <div className="space-y-1.5">
+              <label className="text-sm font-semibold text-slate-900 ml-1">Full Name</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <User className="h-5 w-5 text-slate-500" />
+                </div>
                 <input
                   type="text"
-                  value={formData.emergency_contact}
-                  onChange={(e) => setFormData({ ...formData, emergency_contact: e.target.value })}
-                  className="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
-                  placeholder="+1 555-019-2834"
+                  {...registerField('name')}
+                  className="block w-full pl-11 pr-4 py-3.5 bg-slate-50/50 border border-slate-200 rounded-2xl text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all outline-none"
+                  placeholder="John Doe"
                 />
               </div>
+              {errors.name && <p className="text-xs text-red-500 font-medium ml-1 mt-1">{errors.name.message}</p>}
             </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3 bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-white rounded-xl text-xs font-semibold shadow-glow transition flex items-center justify-center gap-2 mt-2"
-            >
-              {loading ? 'Creating Profile...' : 'Complete Registration'}
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </form>
+            <div className="space-y-1.5">
+              <label className="text-sm font-semibold text-slate-900 ml-1">Email Address</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <Mail className="h-5 w-5 text-slate-500" />
+                </div>
+                <input
+                  type="email"
+                  {...registerField('email')}
+                  className="block w-full pl-11 pr-4 py-3.5 bg-slate-50/50 border border-slate-200 rounded-2xl text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all outline-none"
+                  placeholder="you@example.com"
+                />
+              </div>
+              {errors.email && <p className="text-xs text-red-500 font-medium ml-1 mt-1">{errors.email.message}</p>}
+            </div>
 
-          <div className="mt-4 pt-4 border-t border-slate-800/80 text-center">
-            <p className="text-xs text-slate-400">
-              Already registered?{' '}
-              <Link to="/login" className="text-blue-400 font-semibold hover:underline">
-                Sign In
-              </Link>
-            </p>
-          </div>
-        </div>
+            <div className="space-y-1.5">
+              <label className="text-sm font-semibold text-slate-900 ml-1">Password</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <Lock className="h-5 w-5 text-slate-500" />
+                </div>
+                <input
+                  type="password"
+                  {...registerField('password')}
+                  className="block w-full pl-11 pr-4 py-3.5 bg-slate-50/50 border border-slate-200 rounded-2xl text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all outline-none"
+                  placeholder="••••••••"
+                />
+              </div>
+              {errors.password && <p className="text-xs text-red-500 font-medium ml-1 mt-1">{errors.password.message}</p>}
+            </div>
+
+            <PremiumButton 
+              type="submit" 
+              loading={isSubmitting}
+              className="w-full mt-8"
+              variant="medical"
+            >
+              Create Account
+            </PremiumButton>
+          </form>
+        </GlassCard>
+
+        <p className="text-center text-sm text-slate-900 mt-8 font-medium">
+          Already have an account?{' '}
+          <Link to="/login" className="font-bold text-brand-600 hover:text-brand-700 transition-colors">
+            Sign In
+          </Link>
+        </p>
       </div>
     </div>
   );
-};
-
-export default Register;
+}

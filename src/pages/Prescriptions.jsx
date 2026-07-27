@@ -108,13 +108,13 @@ export const Prescriptions = () => {
             className="hidden"
           />
           <label htmlFor="presc-input" className="cursor-pointer block p-8 sm:p-12">
-            <div className="w-16 h-16 rounded-2xl bg-medical-50 dark:bg-medical-500/10 text-medical-600 dark:text-medical-400 mx-auto flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 text-blue-600 mx-auto flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
               {uploading ? <RefreshCw className="w-8 h-8 animate-spin" /> : <FileUp className="w-8 h-8" />}
             </div>
-            <div className="text-base font-bold text-slate-800 dark:text-slate-100">
+            <div className="text-base font-bold text-slate-900">
               {uploading ? 'Parsing Prescription Image with Vision OCR...' : 'Upload Prescription Scan or Photo'}
             </div>
-            <div className="text-sm text-slate-500 dark:text-slate-400 mt-2 font-medium">Extracts dosage, frequency, food warnings & creates reminder schedules</div>
+            <div className="text-sm text-slate-500 mt-2 font-medium">Extracts dosage, frequency, food warnings & creates reminder schedules</div>
           </label>
         </Card>
       </div>
@@ -123,7 +123,7 @@ export const Prescriptions = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Scans List */}
         <div className="lg:col-span-4 space-y-4">
-          <div className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 px-1">
+          <div className="text-xs font-bold uppercase tracking-wider text-slate-500 px-1">
             Scanned Prescriptions ({prescriptions.length})
           </div>
 
@@ -141,20 +141,20 @@ export const Prescriptions = () => {
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <div className="font-bold text-sm text-slate-800 dark:text-slate-100 line-clamp-1">{p.filename}</div>
+                  <div className="font-bold text-sm text-slate-900 line-clamp-1">{p.filename}</div>
                   {p.confirmed_by_user ? (
                     <Badge variant="success" className="shrink-0"><CheckCircle className="w-3 h-3 mr-1" /> Confirmed</Badge>
                   ) : (
                     <Badge variant="warning" className="shrink-0"><AlertTriangle className="w-3 h-3 mr-1" /> Pending</Badge>
                   )}
                 </div>
-                <div className="text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-2">
-                  OCR Confidence: <span className="font-bold text-slate-700 dark:text-slate-300">{Math.round((p.confidence_score || 0.9) * 100)}%</span>
+                <div className="text-[11px] font-medium text-slate-500 mt-2">
+                  OCR Confidence: <span className="font-bold text-slate-900">{Math.round((p.confidence_score || 0.9) * 100)}%</span>
                 </div>
               </Card>
             ))}
             {prescriptions.length === 0 && (
-              <div className="p-8 text-center text-sm text-slate-500 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-2xl">
+              <div className="p-8 text-center text-sm text-slate-500 border-2 border-dashed border-slate-200 rounded-2xl">
                 No prescriptions scanned yet.
               </div>
             )}
@@ -174,14 +174,14 @@ export const Prescriptions = () => {
                 <Card className="space-y-8" padding="large">
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
                     <div>
-                      <h2 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white leading-tight mb-2">
+                      <h2 className="text-xl sm:text-2xl font-bold text-slate-900 leading-tight mb-2">
                         {activePrescription.filename}
                       </h2>
                       <div className="flex items-center gap-3">
                         <Badge variant="info">
                           OCR Confidence: {Math.round((activePrescription.confidence_score || 0.9) * 100)}%
                         </Badge>
-                        <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Verify extracted medications</p>
+                        <p className="text-xs font-medium text-slate-500">Verify extracted medications</p>
                       </div>
                     </div>
 
@@ -197,7 +197,7 @@ export const Prescriptions = () => {
 
                   {/* Medicines List / Edit Fields */}
                   <div>
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4">
                       Extracted Medications ({editMedicines.length})
                     </h3>
 
@@ -224,19 +224,19 @@ export const Prescriptions = () => {
 
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-slate-200 dark:border-slate-800/80">
                             <div className="text-xs">
-                              <div className="font-bold text-slate-700 dark:text-slate-400 mb-1">Instructions:</div> 
-                              <div className="text-slate-600 dark:text-slate-300 leading-relaxed">{med.instructions}</div>
+                              <div className="font-bold text-slate-900 mb-1">Instructions:</div> 
+                              <div className="text-slate-700 leading-relaxed">{med.instructions}</div>
                             </div>
                             <div className="text-xs">
                               <div className="font-bold text-amber-700 dark:text-amber-500/80 mb-1">Food Interactions:</div> 
-                              <div className="text-slate-600 dark:text-slate-300 leading-relaxed">{med.food_interactions}</div>
+                              <div className="text-slate-700 leading-relaxed">{med.food_interactions}</div>
                             </div>
                           </div>
 
                           {med.side_effects?.length > 0 && (
                             <div className="text-xs bg-slate-100 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-200 dark:border-slate-700/50 mt-2">
-                              <span className="font-bold text-slate-700 dark:text-slate-300">Common Side Effects:</span> 
-                              <span className="text-slate-600 dark:text-slate-400 ml-1 leading-relaxed">{med.side_effects.join(', ')}</span>
+                              <span className="font-bold text-slate-900">Common Side Effects:</span> 
+                              <span className="text-slate-700 ml-1 leading-relaxed">{med.side_effects.join(', ')}</span>
                             </div>
                           )}
                         </div>
@@ -247,7 +247,7 @@ export const Prescriptions = () => {
               </motion.div>
             ) : (
               <Card className="flex flex-col items-center justify-center p-16 text-center text-slate-500 min-h-[400px]">
-                <Pill className="w-12 h-12 text-slate-300 dark:text-slate-700 mb-4" />
+                <Pill className="w-12 h-12 text-slate-400 dark:text-slate-900 mb-4" />
                 <p className="text-sm font-medium">Select or scan a prescription to view AI details.</p>
               </Card>
             )}

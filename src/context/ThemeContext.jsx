@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(() => localStorage.getItem('meditwin_theme') || 'dark');
+  const [theme, setTheme] = useState(() => localStorage.getItem('meditwin_theme') || 'light');
 
   useEffect(() => {
     const root = document.documentElement;
