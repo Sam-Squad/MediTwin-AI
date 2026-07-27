@@ -231,38 +231,41 @@ export default function AuthScreen() {
               />
 
               {!isRegister && (
-                <TouchableOpacity className="mt-4 flex-row justify-center items-center gap-2 h-14 rounded-2xl bg-surface border border-surface-border">
-                  <Fingerprint size={20} color="#2563EB" />
-                  <Text className="text-sm font-semibold text-text-primary">Biometric Login</Text>
-                </TouchableOpacity>
-              {/* Divider */}
-              <View className="flex-row items-center my-6">
-                <View className="flex-1 h-[1px] bg-slate-200" />
-                <Text className="mx-4 text-text-secondary font-medium">OR CONTINUE WITH</Text>
-                <View className="flex-1 h-[1px] bg-slate-200" />
-              </View>
+                <>
+                  <TouchableOpacity className="mt-4 flex-row justify-center items-center gap-2 h-14 rounded-2xl bg-surface border border-surface-border">
+                    <Fingerprint size={20} color="#2563EB" />
+                    <Text className="text-sm font-semibold text-text-primary">Biometric Login</Text>
+                  </TouchableOpacity>
 
-              {/* Social Logins */}
-              <View className="flex-row gap-4 mb-8">
-                <TouchableOpacity 
-                  onPress={() => alert('Google Sign-In requires Google Cloud Console configuration. Add your Client ID to proceed.')}
-                  className="flex-1 bg-white border border-slate-200 py-3 rounded-2xl flex-row justify-center items-center gap-2 shadow-sm shadow-slate-100"
-                >
-                  {/* Simple G logo placeholder */}
-                  <View className="w-5 h-5 rounded-full bg-red-500 items-center justify-center">
-                    <Text className="text-white font-bold text-xs">G</Text>
+                  {/* Divider */}
+                  <View className="flex-row items-center my-6">
+                    <View className="flex-1 h-[1px] bg-slate-200" />
+                    <Text className="mx-4 text-text-secondary font-medium">OR CONTINUE WITH</Text>
+                    <View className="flex-1 h-[1px] bg-slate-200" />
                   </View>
-                  <Text className="text-text-primary font-bold">Google</Text>
-                </TouchableOpacity>
 
-                <TouchableOpacity 
-                  onPress={() => alert('OTP Verification: Enter a phone number first.')}
-                  className="flex-1 bg-white border border-slate-200 py-3 rounded-2xl flex-row justify-center items-center gap-2 shadow-sm shadow-slate-100"
-                >
-                  <Fingerprint size={20} color="#0F172A" />
-                  <Text className="text-text-primary font-bold">OTP / Phone</Text>
-                </TouchableOpacity>
-              </View>
+                  {/* Social Logins */}
+                  <View className="flex-row gap-4 mb-8">
+                    <TouchableOpacity 
+                      onPress={() => alert('Google Sign-In requires Google Cloud Console configuration. Add your Client ID to proceed.')}
+                      className="flex-1 bg-white border border-slate-200 py-3 rounded-2xl flex-row justify-center items-center gap-2 shadow-sm shadow-slate-100"
+                    >
+                      <View className="w-5 h-5 rounded-full bg-red-500 items-center justify-center">
+                        <Text className="text-white font-bold text-xs">G</Text>
+                      </View>
+                      <Text className="text-text-primary font-bold">Google</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                      onPress={() => alert('OTP Verification: Enter a phone number first.')}
+                      className="flex-1 bg-white border border-slate-200 py-3 rounded-2xl flex-row justify-center items-center gap-2 shadow-sm shadow-slate-100"
+                    >
+                      <Fingerprint size={20} color="#0F172A" />
+                      <Text className="text-text-primary font-bold">OTP / Phone</Text>
+                    </TouchableOpacity>
+                  </View>
+                </>
+              )}
 
               {/* Toggle Mode */}
               <TouchableOpacity onPress={toggleMode} className="mt-4 pb-8 items-center">

@@ -1,13 +1,8 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Constants from 'expo-constants';
 
-// Dynamically determine the host IP from Expo debuggerHost
-const debuggerHost =
-  Constants.expoGoConfig?.debuggerHost?.split(':')[0] ??
-  Constants.expoConfig?.hostUri?.split(':')[0] ??
-  'localhost';
-export const API_URL = `http://${debuggerHost}:8000`;
+// Live deployed backend URL
+export const API_URL = 'https://meditwin-ai-backend.onrender.com';
 const api = axios.create({
   baseURL: API_URL,
   headers: {
