@@ -3,6 +3,10 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
+
+  // 👇 Add this line
+  base: '/MediTwin-AI/',
+
   server: {
     port: 5173,
     host: true,
