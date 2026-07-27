@@ -34,6 +34,7 @@ async def upload_prescription(
 
     presc_coll = db_manager.get_collection("prescriptions")
     await presc_coll.insert_one(presc_doc)
+    presc_doc.pop("_id", None)
     return presc_doc
 
 @router.post("/{presc_id}/confirm", response_model=PrescriptionResponse)
@@ -85,6 +86,8 @@ async def confirm_prescription(
     })
 
     updated = await presc_coll.find_one({"id": presc_id})
+    if updated:
+        updated.pop("_id", None)
     return updated
 
 @router.get("/", response_model=List[PrescriptionResponse])
@@ -128,4 +131,5 @@ async def list_prescriptions(current_user: dict = Depends(get_current_user)):
         }
         await presc_coll.insert_one(sample)
         results = [sample]
+    for r in results: r.pop("_id", None)
     return results

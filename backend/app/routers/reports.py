@@ -61,6 +61,7 @@ async def upload_medical_report(
         "ref_id": report_id
     })
 
+    report_doc.pop("_id", None)
     return report_doc
 
 @router.get("/", response_model=List[MedicalReportResponse])
@@ -113,6 +114,7 @@ async def list_user_reports(current_user: dict = Depends(get_current_user)):
         await reports_coll.insert_one(sample)
         results = [sample]
 
+    for r in results: r.pop("_id", None)
     return results
 
 @router.get("/{report_id}/download-pdf")

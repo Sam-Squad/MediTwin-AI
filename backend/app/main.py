@@ -7,12 +7,13 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from app.core.config import settings
 from app.core.database import db_manager
 from app.routers import (
     auth, users, reports, prescriptions, reminders,
     chat, medical_images, timeline, health_summary,
-    doctor_copilot, wellness, emergency, admin, heart_rate
+    doctor_copilot, wellness, emergency, admin, heart_rate, voice
 )
 
 logging.basicConfig(level=logging.INFO)
@@ -25,6 +26,12 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc"
 )
+
+# Global exception handler
+@app.exception_handler(Exception)
+async def global_exception_handler(request, exc):
+    logger.error(f"Unhandled error: {exc}")
+    return JSONResponse(status_code=500, content={"error": "Internal server error"})
 
 # CORS Configuration for React (Vite)
 app.add_middleware(

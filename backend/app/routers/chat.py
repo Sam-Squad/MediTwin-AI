@@ -108,6 +108,7 @@ async def send_chat_message(
             "messages_count": 2
         })
 
+    asst_msg_doc.pop("_id", None)
     return asst_msg_doc
 
 @router.get("/sessions", response_model=List[ChatSessionResponse])
@@ -118,6 +119,7 @@ async def list_chat_sessions(
     sessions_coll = db_manager.get_collection("chat_sessions")
     cursor = sessions_coll.find({"user_id": current_user["id"]}).sort("last_updated", -1)
     sessions = await cursor.to_list(100)
+    for s in sessions: s.pop("_id", None)
     return sessions
 
 @router.get("/session/{chat_id}", response_model=List[ChatMessageResponse])
@@ -125,6 +127,7 @@ async def get_chat_history(chat_id: str, current_user: dict = Depends(get_curren
     chat_coll = db_manager.get_collection("chat_messages")
     cursor = chat_coll.find({"chat_id": chat_id, "user_id": current_user["id"]}).sort("timestamp", 1)
     messages = await cursor.to_list(100)
+    for m in messages: m.pop("_id", None)
     return messages
 
 @router.delete("/session/{chat_id}")

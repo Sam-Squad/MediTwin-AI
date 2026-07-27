@@ -55,4 +55,5 @@ async def get_health_timeline(current_user: dict = Depends(get_current_user)):
             await timeline_coll.insert_one(e)
         events = sample_events
 
+    for e in events: e.pop("_id", None)
     return events

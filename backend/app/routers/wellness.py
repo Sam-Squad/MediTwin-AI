@@ -31,6 +31,7 @@ async def get_wellness_goals(current_user: dict = Depends(get_current_user)) -> 
         }
         await wellness_coll.insert_one(data)
 
+    data.pop("_id", None)
     return data
 
 @router.put("/update")
@@ -61,4 +62,5 @@ async def update_wellness_progress(
         await wellness_coll.insert_one(update_fields)
 
     updated = await wellness_coll.find_one({"user_id": current_user["id"]})
+    if updated: updated.pop("_id", None)
     return updated

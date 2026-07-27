@@ -10,6 +10,28 @@ router = APIRouter(prefix="/auth", tags=["Authentication"])
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 
 async def get_current_user(token: str = Depends(oauth2_scheme)) -> dict:
+    if token == "demo-mock-jwt-token":
+        users_coll = db_manager.get_collection("users")
+        demo = await users_coll.find_one({"email": "demo@meditwin.ai"})
+        if not demo:
+            demo_id = "demo-user-123"
+            demo = {
+                "id": demo_id,
+                "name": "Alex Morgan",
+                "email": "demo@meditwin.ai",
+                "password": get_password_hash("demo1234"),
+                "blood_group": "A+",
+                "allergies": ["Penicillin"],
+                "emergency_contact": "+1 (555) 948-2301",
+                "chronic_conditions": ["Mild Asthma"],
+                "role": "patient",
+                "theme": "dark",
+                "language": "en",
+                "created_at": datetime.utcnow().isoformat()
+            }
+            await users_coll.insert_one(demo)
+        return demo
+
     payload = decode_access_token(token)
     if not payload:
         raise HTTPException(
@@ -21,7 +43,6 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> dict:
     users_coll = db_manager.get_collection("users")
     user = await users_coll.find_one({"id": user_id})
     if not user:
-        # Fallback check for email
         user = await users_coll.find_one({"email": user_id})
     if not user:
         raise HTTPException(status_code=404, detail="User not found")

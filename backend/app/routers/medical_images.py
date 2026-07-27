@@ -46,6 +46,7 @@ async def upload_medical_image(
         "ref_id": img_id
     })
 
+    doc.pop("_id", None)
     return doc
 
 @router.get("/")
@@ -77,4 +78,5 @@ async def list_medical_images(current_user: dict = Depends(get_current_user)):
         await images_coll.insert_one(sample)
         results = [sample]
 
+    for r in results: r.pop("_id", None)
     return results

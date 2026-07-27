@@ -28,6 +28,7 @@ async def create_reminder(
     }
     reminders_coll = db_manager.get_collection("reminders")
     await reminders_coll.insert_one(doc)
+    doc.pop("_id", None)
     return doc
 
 @router.get("/", response_model=List[MedicineReminderResponse])
@@ -80,6 +81,7 @@ async def list_reminders(current_user: dict = Depends(get_current_user)):
             await reminders_coll.insert_one(r)
         results = sample_reminders
 
+    for r in results: r.pop("_id", None)
     return results
 
 @router.patch("/{reminder_id}/status", response_model=MedicineReminderResponse)
@@ -118,4 +120,5 @@ async def update_reminder_status(
     })
 
     updated = await reminders_coll.find_one({"id": reminder_id})
+    if updated: updated.pop("_id", None)
     return updated

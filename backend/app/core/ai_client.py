@@ -57,7 +57,7 @@ Ensure strictly valid JSON response without markdown code blocks.
 """
         if self.genai_available:
             try:
-                model = self.genai.GenerativeModel("gemini-2.5-flash")
+                model = self.genai.GenerativeModel("gemini-pro")
                 response = model.generate_content(prompt)
                 clean_text = response.text.replace("```json", "").replace("```", "").strip()
                 return json.loads(clean_text)
@@ -178,7 +178,7 @@ Return JSON with format:
 """
         if self.genai_available:
             try:
-                model = self.genai.GenerativeModel("gemini-2.5-flash")
+                model = self.genai.GenerativeModel("gemini-pro")
                 response = model.generate_content(prompt)
                 clean_text = response.text.replace("```json", "").replace("```", "").strip()
                 return json.loads(clean_text)
@@ -215,9 +215,9 @@ Return JSON with format:
 
     async def generate_rag_chat_response(self, user_query: str, context: Dict[str, Any], chat_history: List[Dict[str, Any]]) -> str:
         """RAG medical chat response combining lab reports, prescriptions, images, history."""
-        reports_summary = json.dumps(context.get("reports", []), indent=2)
-        prescriptions_summary = json.dumps(context.get("prescriptions", []), indent=2)
-        images_summary = json.dumps(context.get("images", []), indent=2)
+        reports_summary = json.dumps(context.get("reports", []), indent=2, default=str)
+        prescriptions_summary = json.dumps(context.get("prescriptions", []), indent=2, default=str)
+        images_summary = json.dumps(context.get("images", []), indent=2, default=str)
 
         prompt = f"""
 You are MediTwin AI, a knowledgeable, empathetic, and ultra-clear medical companion chatbot.
@@ -236,7 +236,7 @@ Guidelines:
 """
         if self.genai_available:
             try:
-                model = self.genai.GenerativeModel("gemini-2.5-flash")
+                model = self.genai.GenerativeModel("gemini-pro")
                 response = model.generate_content(prompt)
                 return response.text
             except Exception as e:
