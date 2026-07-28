@@ -54,7 +54,7 @@ export default function RAGChat() {
   };
 
   return (
-    <div className="h-[calc(100vh-8rem)] flex flex-col relative max-w-4xl mx-auto w-full">
+    <div className="h-[calc(100vh-6rem)] lg:h-[calc(100vh-7rem)] flex flex-col relative max-w-6xl mx-auto w-full -mt-2">
       {/* Ambient Glow */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-500/10 rounded-full blur-[100px] pointer-events-none -z-10" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none -z-10" />

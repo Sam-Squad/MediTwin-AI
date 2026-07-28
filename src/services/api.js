@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // In local dev, Vite proxies /api → localhost:8000 (see vite.config.js)
 // In production (Vercel/Netlify), VITE_API_URL points to the Render backend
-const API_BASE = import.meta.env.VITE_API_URL || '/api';
+const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? '/api' : 'https://meditwin-ai-backend.onrender.com/api');
 
 const api = axios.create({
   baseURL: API_BASE,
